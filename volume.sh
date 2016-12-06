@@ -6,12 +6,12 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
     OUTPUT=$(osascript -e 'get volume settings');
     MUTEDSETTING=$(echo $OUTPUT | cut -f4- -d',' | cut -f2- -d':')
-    VOLLEVEL=$(echo $OUTPUT | cut -f1- -d',' | cut -f2- -d':' | sed 's/, .*//')
 
     if [ "$MUTEDSETTING" == "true" ]
     then
-        echo "Muted"
+        echo "xx"
     else
-        echo $VOLLEVEL
+        VOLLEVEL=$(echo $OUTPUT | cut -f1- -d',' | cut -f2- -d':' | sed 's/, .*//')
+        printf "%02d" $VOLLEVEL
     fi
 fi
